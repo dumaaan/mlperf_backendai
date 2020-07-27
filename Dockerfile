@@ -36,11 +36,10 @@ FROM lablup/common-base:20.06-py36-cuda10
 
 RUN python3 -m pip install pip --no-cache-dir \
         pandas==1.0.4 \
-    	https://download.pytorch.org/whl/cu100/torch-${PYTORCH_VERSION}%2Bcu101-cp36-cp36m-linux_x86_64.whl \
-        https://download.pytorch.org/whl/cu100/torchvision-${TORCHVISION_VERSION}%2Bcu101-cp36-cp36m-linux_x86_64.whl
+    	https://download.pytorch.org/whl/cu100/torch-${PYTORCH_VERSION}%2Bcu101-cp36-cp36m-linux_x86_64.whl
         
 # Install ipython kernelspec
-RUN python3 -m ipykernel install --display-name "Lablup FF 20.06 on Python 3.6 (CUDA 10.1)" && \
+RUN python3 -m ipykernel install --display-name "Lablup FF 20.06 on Python 3.6 (CUDA 10.0)" && \
     cat /usr/local/share/jupyter/kernels/python3/kernel.json
 
 # Backend.AI specifics
