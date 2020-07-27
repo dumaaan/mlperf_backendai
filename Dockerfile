@@ -1,4 +1,4 @@
-FROM lablup/common-base:20.06-py36-cuda10.1
+FROM lablup/common-base:20.06-py36-cuda10
 
 ENV PYTORCH_VERSION=1.0.1
 ARG CUDA=10.0
@@ -32,15 +32,13 @@ RUN pip install ninja==1.8.2.post2 \
                 mlperf_compliance==0.0.10 \
                 torchvision==0.2.2
 
-FROM lablup/common-base:20.06-py36-cuda10.1
+FROM lablup/common-base:20.06-py36-cuda10
 
 RUN python3 -m pip install pip --no-cache-dir \
         pandas==1.0.4 \
-    	https://download.pytorch.org/whl/cu101/torch-${PYTORCH_VERSION}%2Bcu101-cp36-cp36m-linux_x86_64.whl \
-        https://download.pytorch.org/whl/cu101/torchvision-${TORCHVISION_VERSION}%2Bcu101-cp36-cp36m-linux_x86_64.whl \
-        https://download.pytorch.org/whl/torchaudio-${TORCHAUDIO_VERSION}-cp36-cp36m-linux_x86_64.whl \
-        torchtext==${TORCHTEXT_VERSION}	     
-
+    	https://download.pytorch.org/whl/cu100/torch-${PYTORCH_VERSION}%2Bcu101-cp36-cp36m-linux_x86_64.whl \
+        https://download.pytorch.org/whl/cu100/torchvision-${TORCHVISION_VERSION}%2Bcu101-cp36-cp36m-linux_x86_64.whl
+        
 # Install ipython kernelspec
 RUN python3 -m ipykernel install --display-name "Lablup FF 20.06 on Python 3.6 (CUDA 10.1)" && \
     cat /usr/local/share/jupyter/kernels/python3/kernel.json
@@ -60,50 +58,3 @@ LABEL ai.backend.kernelspec="1" \
 
 WORKDIR /home/work
 # vim: ft=dockerfile
-
-# For information purposes only, these are the versions of the packages which we've successfully used:
-# $ pip list
-# Package              Version           Location
-# -------------------- ----------------- -------------------------------------------------
-# backcall             0.1.0
-# certifi              2018.11.29
-# cffi                 1.11.5
-# cycler               0.10.0
-# Cython               0.29.5
-# decorator            4.3.2
-# fairseq              0.6.0             /scratch/fairseq
-# ipython              7.2.0
-# ipython-genutils     0.2.0
-# jedi                 0.13.2
-# kiwisolver           1.0.1
-# maskrcnn-benchmark   0.1               /scratch/mlperf/training/object_detection/pytorch
-# matplotlib           3.0.2
-# mkl-fft              1.0.10
-# mkl-random           1.0.2
-# mlperf-compliance    0.0.10
-# ninja                1.8.2.post2
-# numpy                1.16.1
-# opencv-python        4.0.0.21
-# parso                0.3.2
-# pexpect              4.6.0
-# pickleshare          0.7.5
-# Pillow               5.4.1
-# pip                  19.0.1
-# prompt-toolkit       2.0.8
-# ptyprocess           0.6.0
-# pycocotools          2.0
-# pycparser            2.19
-# Pygments             2.3.1
-# pyparsing            2.3.1
-# python-dateutil      2.8.0
-# pytorch-quantization 0.2.1
-# PyYAML               3.13
-# setuptools           40.8.0
-# six                  1.12.0
-# torch                1.0.0.dev20190225
-# torchvision          0.2.1
-# tqdm                 4.31.1
-# traitlets            4.3.2
-# wcwidth              0.1.7
-# wheel                0.32.3
-# yacs                 0.1.5
