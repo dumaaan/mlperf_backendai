@@ -49,6 +49,12 @@ LABEL ai.backend.kernelspec="1" \
 ```
 4. Ideally, you should be able to run `bash run_and_time.sh` script, but most likely, the script contents need an overhaul as well. **IN PROGRESS**
 
+# Pushing the image to Backend.AI
+
+1. Login through Docker to https://beta.backend.docker.ai using `docker login -u username SERVER` command.
+2. Tag the image as the `beta.docker.backend.ai/mlperf/<your-image-name>`.
+3. Push the image using `docker push <image tag>` command.
+
 
 
 
