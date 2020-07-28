@@ -1,10 +1,25 @@
 # MLPerf @ Backend.AI
-A repo for the current MLperf implementation at Backend.AI
+A repo for the current MLperf implementation at [Backend.AI](https://github.com/lablup/backend.ai). This repo is created for tracking the progress and issues related with implementing MLPerf on Backend.AI
 
+# **Object Detection Task for MLPerf on Backend AI**
 
-Currently focusing on the Object Detection task.
+Currently focusing on the Object Detection task. 
 
-This repo is created for tracking the progress and issues related with implementing MLPerf on Backend.AI
+**Metrics:** mask and box mAP.
+
+**Dataset:** COCO dataset by Microsoft
+
+**Data preprocessing limitations:** only horizontal flips allowed.
+
+**Train and test data:** as provided by COCO dataset.
+
+**Model:** Mask R-CNN with a ResNet50.
+
+**Optimizer:** Momentum SGD. Weight decay of 0.0001, momentum of 0.9.
+
+Layers are displayed when running `run_and_time.sh` script.
+
+**Target metrics:** Box mAP of 0.377, mask mAP of 0.339
 
 
 # **Current issues:**
