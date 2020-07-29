@@ -27,7 +27,8 @@ Layers are displayed when running `run_and_time.sh` script.
 
 1. Unable to run `docker` command - needs to rewrite the Dockerfile to reflect on Backend.AI specifics - **IN PROGRESS** - ideally it should be automated.
 2. Needs to set up a proper configuration, including the information on current running GPU. - **8 NVIDIA V100 GPUs**.
-3. To Be Continued
+3. There are four Dockerfiles within the Object Detection repo - need to figure out which ones to integrate.
+4. Update the label adder script - still in the draft version.
 
 
 # **Setup**
@@ -51,7 +52,7 @@ LABEL ai.backend.kernelspec="1" \
 
 # Pushing the image to Backend.AI
 
-1. Login through Docker to https://beta.backend.docker.ai using `docker login -u username SERVER` command.
+1. Login through Docker to Harbor (https://beta.backend.docker.ai) using `docker login -u username SERVER` command.
 2. Tag the image as the `beta.docker.backend.ai/mlperf/<your-image-name>`.
 3. Push the image using `docker push <image tag>` command.
 
