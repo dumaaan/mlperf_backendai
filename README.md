@@ -48,7 +48,11 @@ LABEL ai.backend.kernelspec="1" \
       ai.backend.runtime-path="/usr/local/bin/python" \
       ai.backend.service-ports="ipython:pty:3000,jupyter:http:8080,jupyterlab:http:8090"
 ```
-4. Ideally, you should be able to run `bash run_and_time.sh` script, but most likely, the script contents need an overhaul as well. **IN PROGRESS**
+Currently, I have added a `add_label.py` python script to update labels in the Dockerfile, but it needs further testing and improvements.
+
+The command to run the script is `python add_label.py <name/path to current Dockerfile> <new Dockerfile>`.
+
+4. Ideally, you should be able to run `bash run_and_time.sh` script, but most likely, the script contents need an overhaul as well. **TO DO**
 
 # Pushing the image to Backend.AI
 
