@@ -60,6 +60,8 @@ The command to run the script is `python add_label.py <name/path to current Dock
 2. Tag the image as the `beta.docker.backend.ai/mlperf/<your-image-name>`.
 3. Push the image using `docker push <image tag>` command.
 
+# TO DOs
 
-
+1. Remake the Docker images to adapt them to Backend.AI platform - **TOP PRIORITY**
+2. Automate the conversion of Docker images to Backend.AI platform
 
