@@ -29,6 +29,7 @@ Layers are displayed when running `run_and_time.sh` script.
 2. Needs to set up a proper configuration, including the information on current running GPU. - **8 NVIDIA V100 GPUs**.
 3. There are four Dockerfiles within the Object Detection repo - need to figure out which ones to integrate.
 4. Update the label adder script - still in the draft version.
+5. Currentlym running `bash run_and_time.sh` gives `PermissionError: [Errno 13] Permission denied` error. Probably, there is a dependency/access issues. Needs further investigation.
 
 
 # **Setup**
