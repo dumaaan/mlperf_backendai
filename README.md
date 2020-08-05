@@ -33,9 +33,10 @@ The command to run the script is `python add_label.py <name/path to current Dock
 
 # Pushing the image to Backend.AI
 
-1. Login through Docker to Harbor (https://beta.docker.backend.ai) using `docker login -u username SERVER` command.
-2. Tag the image as the `beta.docker.backend.ai/mlperf/<your-image-name>`.
-3. Push the image using `docker push <image tag>` command.
+1. Build the image in docker using `docker build` command.
+2. Login through Docker to Harbor (https://beta.docker.backend.ai) using `docker login -u username SERVER` command.
+3. Tag the image as the `beta.docker.backend.ai/mlperf/<your-image-name>`.
+4. Push the image using `docker push <image tag>` command.
 
 # TO DOs
 
