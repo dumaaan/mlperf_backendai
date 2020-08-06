@@ -1,14 +1,14 @@
-FROM lablup/common-base:20.06-py36-cuda10
+FROM nvidia/cuda:10.0-cudnn7-runtime-ubuntu16.04
 
+ENV LANG=C.UTF-8
+ENV PYTHONUNBUFFERED 1
 ENV PYTORCH_VERSION=1.0.1
-ARG CUDA=10.0
+ENV CUDA=10.0.130
 ENV CUDNN_VERSION=7.6.4.38-1+cuda10.0
 ENV PYTHONUNBUFFERED=1 \
     LD_LIBRARY_PATH="/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/lib64:/usr/local/nvidia/lib64:/usr/include/x86_64-linux-gnu" \
     PATH="/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin/mecab" \
     LANG=C.UTF-8
-
-SHELL ["/bin/bash", "-cu"]
 
 
 FROM pytorch/pytorch:1.0.1-cuda10.0-cudnn7-devel
@@ -36,7 +36,8 @@ FROM lablup/common-base:20.06-py36-cuda10
 
 RUN python3 -m pip install pip --no-cache-dir \
         pandas==1.0.4 \
-    	https://download.pytorch.org/whl/cu100/torch-${PYTORCH_VERSION}%2Bcu101-cp36-cp36m-linux_x86_64.whl
+    	https://download.pytorch.org/whl/cu100/torch-${PYTORCH_VERSION}%2Bcu101-cp36-cp36m-linux_x86_64.whl \
+        https://download.pytorch.org/whl/cu100/torchvision-${TORCHVISION_VERSION}%2Bcu101-cp36-cp36m-linux_x86_64.whl
         
 # Install ipython kernelspec
 RUN python3 -m ipykernel install --display-name "Lablup FF 20.06 on Python 3.6 (CUDA 10.0)" && \
