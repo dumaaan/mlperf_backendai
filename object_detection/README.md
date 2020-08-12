@@ -25,7 +25,7 @@ Layers are displayed when running `run_and_time.sh` script.
 # **Current issues:**
 
 
-1. Unable to run `docker` command - needs to rewrite the Dockerfile to reflect on Backend.AI specifics - **IN PROGRESS** - ideally it should be automated.
+1. Unable to run `docker` command - needs to rewrite the Dockerfile to reflect on Backend.AI specifics - **Solved** - ideally it should be automated.
 2. Needs to set up a proper configuration, including the information on current running GPU. - **8 NVIDIA V100 GPUs**.
 3. There are four Dockerfiles within the Object Detection repo - need to figure out which ones to integrate.
 4. Update the label adder script - still in the draft version.
