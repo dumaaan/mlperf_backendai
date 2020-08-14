@@ -79,38 +79,11 @@ def main():
     processes = []
 
     for local_rank in range(0, args.nproc_per_node):
-        # each process's rank
-        dist_rank = args.nproc_per_node * args.node_rank + local_rank
-        current_env["RANK"] = str(dist_rank)
-
-        # form numactrl binding command
-        cpu_ranges = [local_rank * NCORES_PER_GPU,
-                     (local_rank + 1) * NCORES_PER_GPU - 1,
-                     local_rank * NCORES_PER_GPU + (NCORES_PER_GPU * NGPUS_PER_SOCKET * NSOCKETS),
-                     (local_rank + 1) * NCORES_PER_GPU + (NCORES_PER_GPU * NGPUS_PER_SOCKET * NSOCKETS) - 1]
-
-        numactlargs = []
-        if args.no_hyperthreads:
-            numactlargs += [ "--physcpubind={}-{}".format(*cpu_ranges[0:2]) ]
-        else:
-            numactlargs += [ "--physcpubind={}-{},{}-{}".format(*cpu_ranges) ]
-
-        if not args.no_membind:
-            memnode = local_rank // NGPUS_PER_SOCKET
-            numactlargs += [ "--membind={}".format(memnode) ]
-
-        # spawn the processes
-        cmd = [ "/usr/bin/numactl" ] \
-            + numactlargs \
-            + [ sys.executable,
-                "-u",
-                args.training_script,
-                "--local_rank={}".format(local_rank)
-              ] \
-            + args.training_script_args
-
-        process = subprocess.Popen(cmd, env=current_env)
-        processes.append(process)
+      current_env["RANK"] = str(local_rank)
+      cmd = [sys.executable, "-u", args.training_script, "--local_rank={}".format(local_rank)]
+      cmd += args.training_script_args
+      process = subprocess.Popen(cmd, env=current_env)
+      processes.append(process)
 
     for process in processes:
         process.wait()
