@@ -1,5 +1,9 @@
 #Object Detection related requirements
+<<<<<<< HEAD
 FROM lablup/python-pytorch:1.6-py36-cuda10.1
+=======
+FROM pytorch/pytorch:1.0.1-cuda10.0-cudnn7-devel
+>>>>>>> 2e7dccee37634886be6188f05a7f0716d1c361c5
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # install basics
@@ -8,7 +12,11 @@ RUN apt-get update -y \
                        libglib2.0-0 \
                        libsm6=2:1.2.2-1 \
                        libxext6=2:1.3.3-1 \
+<<<<<<< HEAD
                        libxrender-dev
+=======
+                       libxrender-dev=1:0.9.9-0ubuntu1
+>>>>>>> 2e7dccee37634886be6188f05a7f0716d1c361c5
 
 RUN pip install ninja==1.8.2.post2 \
                 yacs==0.1.5 \
@@ -36,4 +44,8 @@ LABEL ai.backend.kernelspec="1" \
       ai.backend.base-distro="ubuntu16.04" \
       ai.backend.runtime-type="python" \ 
       ai.backend.runtime-path="/usr/bin/python3" \
+<<<<<<< HEAD
       ai.backend.service-ports="jupyter:http:8080,jupyterlab:http:8090,tensorboard:http:6006"
+=======
+      ai.backend.service-ports="jupyter:http:8080,jupyterlab:http:8090,tensorboard:http:6006"
+>>>>>>> 2e7dccee37634886be6188f05a7f0716d1c361c5
