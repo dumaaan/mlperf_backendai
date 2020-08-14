@@ -17,7 +17,7 @@ set -x
 echo "running benchmark"
 
 DATASET_DIR='/data'
-ln -sTf "${DATASET_DIR}/coco2017" /coco
+#ln -sTf "${DATASET_DIR}/coco2017" /coco
 echo `ls /data`
 
 declare -a CMD
@@ -25,8 +25,8 @@ if [ -n "${SLURM_LOCALID-}" ]; then
   # Mode 1: Slurm launched a task for each GPU and set some envvars; no need for parallel launch
   if [ "${SLURM_NTASKS}" -gt "${SLURM_JOB_NUM_NODES}" ]; then
 
-    if [[ "${DGXSYSTEM}" == DGXA100* ]]; then
-        CMD=( './bind.sh' '--cpu=dgxa100_topology.sh' '--mem=dgxa100_topology.sh' '--' 'python' '-u' )
+    if [[ "${DGXSYSTEM}" == DGX2 ]]; then
+        CMD=( './bind.sh' '--cpu=dgx2_topology.sh' '--mem=dgx2_topology.sh' '--' 'python' '-u' )
     else
         CMD=( './bind.sh' '--cpu=exclusive' '--' 'python' '-u' )
     fi
@@ -38,8 +38,8 @@ else
   # Mode 2: Single-node Docker; need to launch tasks with Pytorch's distributed launch
   # TODO: use bind.sh instead of bind_launch.py
   #       torch.distributed.launch only accepts Python programs (not bash scripts) to exec
-  CMD=( 'python' '-u' '-m' 'bind_launch' "--nsockets_per_node=${DGXNSOCKET}" \
-    "--ncores_per_socket=${DGXSOCKETCORES}" "--nproc_per_node=${DGXNGPU}" )
+  CMD=( 'python' '-u' '-m' 'bind_launch' "--nsockets_per_node=1" \
+    "--ncores_per_socket=8" "--nproc_per_node=1" )
 fi
 
 "${CMD[@]}" tools/train_mlperf.py \
@@ -67,4 +67,3 @@ result=$(( $end - $start ))
 result_name="OBJECT_DETECTION"
 
 echo "RESULT,$result_name,,$result,nvidia,$start_fmt"
-
